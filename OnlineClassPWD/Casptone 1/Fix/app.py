@@ -9,7 +9,7 @@ from tabulate import tabulate
 DB_CONFIG = {
     "host": "localhost",
     "user": "root",
-    "password": "armirder1",
+    "password": "admin123",
     "database": "eshop",
 }
 
@@ -232,7 +232,7 @@ def menu_add_data():
         """
 1) Add Sales Person
 2) Recap a Sale
-0) Back
+0) Back 
 """)
     
 def menu_summary():

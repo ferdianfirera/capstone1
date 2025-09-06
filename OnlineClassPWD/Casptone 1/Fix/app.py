@@ -116,51 +116,6 @@ def view_sales_summary():
     return df
 
 
-    query = """
-        SELECT salesName, itemName, itemType, totalUnitSell
-        FROM totalSales
-        ORDER BY salesName, itemName;
-    """
-    try:
-        with get_conn() as conn:
-            df = pd.read_sql(query, conn)
-    except Error as e:
-        print(f"Error fetching sales summary: {e}")
-        return pd.DataFrame()
-
-    if df.empty:
-        print("\n-- Sales Summary (Pivot Table) --")
-        print("(no sales yet)")
-        return df
-
-    # Reshape the DataFrame to show each salesperson on a single row
-    # with columns for each itemType.
-    pivot_df = df.pivot_table(
-        index='salesName', 
-        columns='itemType', 
-        values='totalUnitSell', 
-        aggfunc='sum'
-    ).fillna(0) # Fill NaN values with 0 for a cleaner look
-
-    print("\n-- Sales Summary (Pivot Table) --")
-    print(pivot_df)
-
-    # You can also use tabulate for a more formatted text output
-    # import tabulate
-    # print(tabulate(pivot_df, headers='keys', tablefmt="fancy_grid"))
-
-    # The original plotting code can also be updated to use this new pivot table
-    if not pivot_df.empty:
-        pivot_df.plot(kind='bar', figsize=(8, 5))
-        plt.title("Sales by Salesperson & Item Type (from Pivot Table)")
-        plt.ylabel("Total Units Sold")
-        plt.xlabel("Salesperson")
-        plt.legend(title="Item Type")
-        plt.tight_layout()
-        plt.show()
-
-    return pivot_df
-
 def recap_sale():
     print("\nPick salesperson and product (use IDs).")
     list_sales()

@@ -257,45 +257,6 @@ Electronic Shop Sales App
 def main():
     while True:
         menu()
-        try:
-            choice = input("Choose: ").strip()
-            if choice == "1":
-                    menu_view_data()
-                    choice = input("Choose: ").strip()
-                    if choice == "1":
-                        list_products()
-                    elif choice == "2":
-                        list_sales()
-                    elif choice == "3":
-                        return menu()
-            elif choice == "2":
-                while True:
-                    menu_add_data()
-                    choice = input("Choose: ").strip()
-                    if choice == "1":
-                        add_salesperson()
-                    elif choice == "2":
-                        recap_sale()
-                    elif choice == "3":
-                        return menu()
-                    else:
-                        print("Invalid choice.")
-                        return menu()                                    
-            elif choice == "3":
-                view_sales_summary()
-            elif choice == "4":
-                total_sold_by_sales()
-            elif choice == "0":
-                print("Thank you!")
-                sys.exit(0)
-            else:
-                print("Invalid choice.")
-        except ValueError:
-            print("Invalid input. Please enter a number from the menu.")
-
-def main2():
-    while True:
-        menu()
         choice = input("Choose: ").strip()
         
         try:
